@@ -24,8 +24,14 @@ public class Entity {
 	public void addToList() {
 		entities.add(this);
 	}
+
+    public void removeFromList() {
+        entities.remove(this);
+    }
 	
 	public void tick(int delta) {
+        xPos += xVel * delta;
+        yPos += yVel * delta;
 		updateBoundingBox();
 		//movement
 	}

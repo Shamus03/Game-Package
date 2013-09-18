@@ -63,6 +63,14 @@ public class Camera {
 			np.addPoint(applyTranslation(p.xpoints[i],xPos,width), height - applyTranslation(p.ypoints[i],yPos,height));		
 		g.draw(np);
 	}
+
+    public static void drawArc(float x, float y, float w, float h, int startAngle, int arcAngle, Graphics2D g) {
+        g.drawArc(applyTranslation(x-w/2,xPos,width), height - applyTranslation(y+h/2,yPos,height), (int)(w*scale), (int)(h*scale), startAngle, arcAngle);
+    }
+
+    public static void fillArc(float x, float y, float w, float h, int startAngle, int arcAngle, Graphics2D g) {
+        g.fillArc(applyTranslation(x-w/2,xPos,width), height - applyTranslation(y+h/2,yPos,height), (int)(w*scale), (int)(h*scale), startAngle, arcAngle);
+    }
 	
 	static int applyTranslation(float z, float dz, int depth) {
 		return (int)((z - dz)*scale) + depth/2;

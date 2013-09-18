@@ -6,7 +6,7 @@ public class CameraFocusEntity extends Entity {
 	Entity focus;
 	private boolean focusInitialized = false;
 	public float xShake = 0, yShake = 0;
-	float springForce = .00005f;
+	float springForce = .00005f * 10;
 	
 	public void tick(int delta) {
 		if(focus != null) {

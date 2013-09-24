@@ -25,7 +25,7 @@ public class Game extends JPanel {
 	public Game() {
 		super();
 
-        showFPSInWindow = false;
+        showFPS(false);
 		
 		Camera.reset();
 		

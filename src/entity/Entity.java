@@ -9,6 +9,7 @@ import camera.*;
 
 public class Entity {
 	public static ArrayList<Entity> entities = new ArrayList<Entity>();
+    static ArrayList<ArrayList<Entity>> entityLists = new ArrayList<ArrayList<Entity>>();
 	
 	protected float xPos,yPos;
 	protected float xVel,yVel;
@@ -101,4 +102,13 @@ public class Entity {
 		}
 		return false;
 	}
+
+    public static int addEntityList(ArrayList<Entity> list) {
+        entityLists.add(list);
+        return entityLists.indexOf(list);
+    }
+
+    public static void switchEntityList(int index) {
+        entities = entityLists.get(index);
+    }
 }

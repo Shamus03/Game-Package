@@ -19,11 +19,13 @@ public class Game extends JPanel {
 	int height;
 	
 	GameFrame frame;
+
+    boolean showFPSInWindow;
 	
 	public Game() {
 		super();
-		
-		gameState = GameState.GAME;
+
+        showFPSInWindow = false;
 		
 		Camera.reset();
 		
@@ -66,24 +68,11 @@ public class Game extends JPanel {
 		
 		refreshSize();
 		
-		dispatchGameState(delta,g);
+		gameLoop(delta, g);
 		
 		updateFPS();
 
 		repaint();
-	}
-	
-	protected GameState gameState;
-	enum GameState {
-		GAME;
-	}
-	
-	public void dispatchGameState(int delta, Graphics2D g) {
-		switch (gameState) {
-		case GAME:
-			gameLoop(delta, g);
-			break;
-		}
 	}
 	
 	public void gameLoop(int delta, Graphics2D g) {
@@ -99,9 +88,15 @@ public class Game extends JPanel {
 			lastFPSUpdate = System.currentTimeMillis();
 			lastFPS = fps;
 			fps = 0;
+            if(showFPSInWindow)
+                frame.setTitle(frame.getTitle() + "     FPS:" + lastFPS);
 		} else
 			fps++;
 	}
+
+    public void showFPS(boolean value) {
+        showFPSInWindow = value;
+    }
 	
 	public void gameTick(int delta) {
 		for(int i = 0; i < Entity.entities.size(); i++)
